@@ -2,15 +2,14 @@ import org.apache.spark.sql.{DataFrame, SparkSession}
 
 object Main {
 
-  def readParquetFiles(folderPath: String, columnName: String): DataFrame = {
-    val spark = SparkSession.builder()
-      .appName("ParquetReader")
-      .getOrCreate()
+  implicit val sparkSession = SparkSession.builder()
+    .appName("ParquetReader")
+    .getOrCreate()
+
+  def readParquetFiles(folderPath: String, columnName: String)(implicit spark: SparkSession): DataFrame = {
 
     val parquetFiles = spark.read.parquet(folderPath)
-
-    val selectedColumns = Seq(columnName)
-    val selectedDataFrame = parquetFiles.select(selectedColumns.head, selectedColumns.tail: _*)
+    val selectedDataFrame = parquetFiles.select(columnName)
 
     selectedDataFrame
   }
