@@ -1,4 +1,4 @@
-This is a study repository where I try to apply BigData concepts in subProjects. 
+#### This is a study repository where I try to apply BigData concepts in subProjects. 
 The main focus are: 
 
 * learning and not performance.
@@ -7,3 +7,9 @@ The main focus are:
 * models and not algorithms.
 
 By far I have applied Newcomb-Belford (NB) law in a dataset.
+
+## Newcomb-Belford (NB) law
+
+[Newcomb-Belford Law](law-newcomb-belford/README.md)
+
+WIP: Genetic Algorithm
