@@ -4,7 +4,7 @@ import org.scalatest.matchers.should.Matchers.convertToAnyShouldWrapper
 
 class NewcombBelfordLawTest extends AnyFlatSpec with SparkSpec {
 
-  val df = Main.readParquetFiles("law-newcomb-belford/src/test/resources/youtube_statistics.parquet", "subscribers")
+  val df = Main.readParquetFiles("law-newcomb-belford/src/test/resources/urnaspresidente", "subscribers")
   val nbl = new NewcombBelfordLaw()
 
   "extractFirstDigit" should "extract a df with first digit of colum" in {
@@ -19,6 +19,8 @@ class NewcombBelfordLawTest extends AnyFlatSpec with SparkSpec {
     result.schema.map(_.name).toList shouldEqual List("firstDigit", "count", "percentage")
   }
 
-
-
+  "compareDataframeWithLaw" should "compare the law with the dataset" in {
+    val result = nbl.calculateNewCombBelfordLaw(df, "subscribers")
+    nbl.compareDataframeWithLaw(result)
+  }
 }
