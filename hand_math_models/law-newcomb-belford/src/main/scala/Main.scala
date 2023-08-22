@@ -24,7 +24,8 @@ object Main {
     val columnName = args(1)
 
     val resultDataFrame = readParquetFiles(folderPath, columnName)
-    resultDataFrame.show()
+    val nbl = new NewcombBelfordLaw()
+    nbl.calculateNewCombBelfordLaw(resultDataFrame, columnName)
   }
 
 

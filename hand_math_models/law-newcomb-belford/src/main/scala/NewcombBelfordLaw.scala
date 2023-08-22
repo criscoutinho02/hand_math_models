@@ -15,7 +15,8 @@ class NewcombBelfordLaw(implicit spark: SparkSession) {
   def calculateNewCombBelfordLaw(df: DataFrame, columName: String) ={
     val countByFirstDigit = this.countByFirstDigit(df, columName)
     val total = countByFirstDigit.agg(sum("count")).first().getLong(0)
-    countByFirstDigit.withColumn("percentage", col("count") / total * 100)
+    val result = countByFirstDigit.withColumn("percentage", col("count") / total * 100)
+    compareDataframeWithLaw(result)
   }
 
   def compareDataframeWithLaw(df: DataFrame) : Unit = {
